@@ -47,4 +47,8 @@ export const state: AppState = {
   explodeRotation: 0,
   gestureBuffer: [],
   stateFrameCount: 0,
+  lastHandX: 0.5,
+  swipeDirection: 0 as -1 | 0 | 1,
+  nextPhotoIndex: 0,
+
 };

@@ -336,6 +336,18 @@ export function animate(): void {
       m.visible = false;
     });
     state.explodeRotation = 0;
+    // ===== HANDLE SWIPE CHANGE PHOTO =====
+    if (state.swipeDirection !== 0) {
+      state.nextPhotoIndex =
+        (state.nextPhotoIndex + state.swipeDirection + CONFIG.PHOTO_COUNT) %
+        CONFIG.PHOTO_COUNT;
+
+      state.explodeRotation =
+        -state.nextPhotoIndex * ((Math.PI * 2) / CONFIG.PHOTO_COUNT);
+
+      state.swipeDirection = 0; // reset sau khi dùng
+    }
+
   } else if (state.current === "EXPLODE") {
     if (titleMesh) titleMesh.visible = false;
     if (starMesh) starMesh.visible = false;
@@ -369,7 +381,7 @@ export function animate(): void {
         mesh.scale.lerp(new THREE.Vector3(0.6, 0.6, 0.6), 0.1);
       }
     });
-    state.selectedIndex = bestIdx;
+  
   } else if (state.current === "PHOTO") {
     if (titleMesh) titleMesh.visible = false;
     if (starMesh) starMesh.visible = false;
@@ -385,6 +397,7 @@ export function animate(): void {
       } else {
         mesh.visible = false;
         mesh.scale.lerp(new THREE.Vector3(0, 0, 0), 0.1);
+        state.nextPhotoIndex = (state.selectedIndex + 1) % CONFIG.PHOTO_COUNT;
       }
     });
 

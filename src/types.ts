@@ -48,6 +48,10 @@ export interface AppState {
   explodeRotation: number;
   gestureBuffer: GestureType[];
   stateFrameCount: number;
+  lastHandX: number;
+  swipeDirection: -1 | 0 | 1;
+  nextPhotoIndex: number;
+
 }
 
 // Config

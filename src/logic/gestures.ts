@@ -39,7 +39,15 @@ export function detectGesture(results: HandResults): GestureType {
   else if (results.multiHandLandmarks.length === 1) {
     const lm = results.multiHandLandmarks[0];
     state.handX = lm[9].x;
+    // ===== SWIPE DETECTION =====
+    const deltaX = state.handX - state.lastHandX;
 
+    // Chỉ nhận vuốt khi KHÔNG ở chế độ pinch (PHOTO)
+    if (state.current !== "PHOTO" && Math.abs(deltaX) > 0.12) {
+      state.swipeDirection = deltaX > 0 ? 1 : -1;
+    }
+
+    state.lastHandX = state.handX;
     const tips = [8, 12, 16, 20];
     const wrist = lm[0];
     let openDist = 0;
