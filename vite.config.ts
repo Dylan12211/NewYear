@@ -3,26 +3,25 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  plugins: [react()],
   base: "/NewYear/",
+
+  plugins: [react()],
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+
+  optimizeDeps: {
+    exclude: ["@mediapipe/hands", "@mediapipe/camera_utils"], // 🚫 không pre-bundle
+  },
+
   build: {
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ["three"],
-          mediapipe: ["@mediapipe/hands", "@mediapipe/camera_utils"],
-        },
-      },
+      external: ["@mediapipe/hands", "@mediapipe/camera_utils"], // 🚫 không bundle
     },
-  },
-  optimizeDeps: {
-    include: ["three", "@mediapipe/hands", "@mediapipe/camera_utils"],
   },
 });
