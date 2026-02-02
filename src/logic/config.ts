@@ -50,6 +50,6 @@ export const state: AppState = {
   lastHandX: 0.5,
   swipeDirection: 0 as -1 | 0 | 1,
   nextPhotoIndex: 0,
-  autoRotateSpeed: 0.003,
+  autoRotateSpeed: 0.005,
 
 };
