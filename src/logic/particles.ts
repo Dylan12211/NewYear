@@ -132,7 +132,7 @@ export function createParticleSystem(
 
 export function updateParticleGroup(
   group: THREE.Points,
-  type: ParticleType,
+  _type: ParticleType,
   targetState: GestureType,
   speed: number,
   _handRotY: number,
