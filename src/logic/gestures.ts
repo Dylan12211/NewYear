@@ -1,5 +1,10 @@
-import { Hands } from "@mediapipe/hands";
-import { Camera } from "@mediapipe/camera_utils";
+declare global {
+  interface Window {
+    Hands: any;
+    Camera: any;
+  }
+}
+
 import { HandResults, GestureType } from "../types";
 import { state } from "./config";
 
@@ -82,28 +87,33 @@ export function detectGesture(results: HandResults): GestureType {
 
 export function initHandTracking(
   onResults: (results: HandResults) => void
-): Hands {
-  const hands = new Hands({
+) {
+  const hands = new window.Hands({
     locateFile: (file: string) =>
       `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
   });
+
   hands.setOptions({
     maxNumHands: 2,
     modelComplexity: 1,
     minDetectionConfidence: 0.5,
     minTrackingConfidence: 0.5,
   });
+
   hands.onResults(onResults as any);
   return hands;
 }
 
-export function initCamera(video: HTMLVideoElement, hands: Hands): Camera {
-  const cameraUtils = new Camera(video, {
+
+export function initCamera(video: HTMLVideoElement, hands: any) {
+  const cameraUtils = new window.Camera(video, {
     onFrame: async () => {
       await hands.send({ image: video });
     },
     width: 320,
     height: 240,
   });
+
   return cameraUtils;
 }
+
