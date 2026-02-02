@@ -4,7 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/merry-christmas/",
+  base: "//NewYear/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
