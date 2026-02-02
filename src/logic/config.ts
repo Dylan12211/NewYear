@@ -8,7 +8,7 @@ export const CONFIG: Config = {
   photoOrbitRadius: 25,
   treeHeight: 70,
   treeBaseRadius: 35,
-  PHOTO_COUNT: 5,
+  PHOTO_COUNT: 9,
 };
 
 export const MUSIC_URL = `${import.meta.env.BASE_URL}assets/audio/audio.mp3`;
