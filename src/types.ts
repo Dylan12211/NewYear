@@ -51,6 +51,7 @@ export interface AppState {
   lastHandX: number;
   swipeDirection: -1 | 0 | 1;
   nextPhotoIndex: number;
+  autoRotateSpeed: number;
 
 }
 

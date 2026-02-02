@@ -358,6 +358,9 @@ export function animate(): void {
     if (messageMesh) messageMesh.visible = false;
 
     const handControl = (state.handX - 0.5) * 0.15;
+    if (state.swipeDirection === 0) {
+      state.explodeRotation += state.autoRotateSpeed;
+    }
     state.explodeRotation += handControl;
 
     const baseAngle = state.explodeRotation;
