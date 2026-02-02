@@ -85,9 +85,12 @@ export function detectGesture(results: HandResults): GestureType {
   return state.current;
 }
 
-export function initHandTracking(
-  onResults: (results: HandResults) => void
-) {
+export function initHandTracking(onResults: (results: HandResults) => void) {
+  if (!window.Hands) {
+    console.error("MediaPipe Hands chưa load!");
+    return null as any;
+  }
+
   const hands = new window.Hands({
     locateFile: (file: string) =>
       `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
@@ -103,6 +106,7 @@ export function initHandTracking(
   hands.onResults(onResults as any);
   return hands;
 }
+
 
 
 export function initCamera(video: HTMLVideoElement, hands: any) {

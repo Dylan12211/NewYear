@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/NewYear/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Happy New Year - Hand Gesture Control</title>
-    <meta
-      name="description"
-      content="Interactive Christmas experience with hand gesture control using MediaPipe and Three.js"
-    />
   </head>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
 
   <body>
     <div id="root"></div>
+
+    <!-- ✅ MediaPipe phải load TRƯỚC React -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+    <!-- React App -->
     <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
